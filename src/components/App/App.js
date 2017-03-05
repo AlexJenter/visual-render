@@ -42,13 +42,15 @@ class App extends Component {
       seed: 'asnely',
       words: '!Zeltlager der Technik- und Computerfreunde **21^^st^^ – 24^^th^^ July 2017** [→ more info](https://wiki.zeteco.ch/),Ze,Te,Co',
       autosize: true,
-      autorule: true,
+      autorule: false,
       columns: 45,
       rows: 27,
       fill: '/',
       empty: '​‌\\',
       isUiVisible: false,
     };
+
+
 
 
     // handle event
@@ -70,12 +72,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.changeWords(frames.title || 'nope');
+
+
     // if dom is ready set the correct row and columns (autosize: true)
     if(this.state.autosize) {
       window.dispatchEvent(new Event('optimizedResize'));
     }
     setInterval(() => {
-      console.log('update')
+      //console.log('update')
       if(this.state.autorule) {
         this.setState({
           rule: Math.floor(Math.random() * 255),
@@ -103,6 +108,8 @@ class App extends Component {
       rule: this.state.rule,
       seed: this.state.seed,
     });
+
+
 
     return (
       <div className={styles.app}>
